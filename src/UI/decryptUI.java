@@ -161,8 +161,11 @@ public class decryptUI {
                     }
                 } else {
                     String src = srcPath1.getText().trim();
+                    File temp = new File(src);
                     if (src.equals("") || desc.equals("") || desc.equals("请输入输出文件路径")) {
                         JOptionPane.showMessageDialog(jp,"请输入需解密文件路径或输出文件路径！","错误 ", JOptionPane.ERROR_MESSAGE);
+                    } else if (!temp.exists()) {
+                        JOptionPane.showMessageDialog(jp,"文件路径错误！","错误 ", JOptionPane.ERROR_MESSAGE);
                     } else {
                         cryptFile.decrypt(src, desc, -1);
                         srcPath1.setText("");
