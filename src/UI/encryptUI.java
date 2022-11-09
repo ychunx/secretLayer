@@ -11,6 +11,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+
 import Main.cryptFile;
 
 public class encryptUI {
@@ -107,8 +109,11 @@ public class encryptUI {
             public void mouseClicked(MouseEvent e) {
                 String src = srcPath1.getText().trim();
                 String desc = descPath.getText().trim();
+                File temp = new File(src);
                 if (src.equals("")) {
                     JOptionPane.showMessageDialog(jp,"请输入需加密文件路径！","错误 ", JOptionPane.ERROR_MESSAGE);
+                } else if (!temp.exists()) {
+                    JOptionPane.showMessageDialog(jp,"文件路径错误！","错误 ", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (desc.equals("该值为空时，加密文件存在程序数据中，否则存入该路径（不支持指定文件名）")) {
                         desc = "data/encryptedFile";
